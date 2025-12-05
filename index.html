@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -936,4 +937,944 @@
                                 <input type="text" class="form-control" id="regName" required>
                             </div>
                             <div class="col-md-6 mb-3">
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WNX - West Nile Xtreme Tournament</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Firebase Connection Status -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Connecting...</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 30px; width: auto; margin-right: 8px;">WNX
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#groups">Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fixtures">Fixtures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#standings">Standings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#knockout">
+                         <i class="fas fa-trophy"></i> Knockouts
+                       </a>
+                   </li>
+                   <li class="nav-item">
+                       <a class="nav-link" onclick="openChatModal()" style="cursor: pointer;">
+                          <i class="fas fa-comments"></i> Chat
+                          <span class="chat-notification-badge" id="chatNotificationBadge" style="display: none;">0</span>
+                        </a>
+                   </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-3" id="authButtons">
+                        <button class="btn btn-outline-custom btn-sm me-2" onclick="showRegisterModal()">
+                            <i class="fas fa-user-plus"></i> Register
+                        </button>
+                        <button class="btn btn-outline-custom btn-sm" onclick="showAdminLoginModal()">
+                            <i class="fas fa-user-shield"></i> Admin
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-animation"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">WNX</h1>
+            <h2 class="hero-subtitle">WEST NILE XTREME</h2>
+            <p class="hero-description">Students Gamers League</p>
+            <p class="hero-description mb-4">
+                <i class="fas fa-gamepad"></i> FC26 Tournament | 
+                <i class="fas fa-calendar"></i> December 15, 2025 | 
+                <i class="fas fa-map-marker-alt"></i> Arua City
+            </p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <button class="btn btn-primary-custom" onclick="showRegisterModal()">
+                    <i class="fas fa-user-plus"></i> Register Now - 5K UGX
+                </button>
+                <button class="btn btn-outline-custom" onclick="scrollToSection('groups')">
+                    <i class="fas fa-trophy"></i> View Tournament
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <i class="fas fa-users card-icon"></i>
+                        <span class="stat-number" id="registeredCount">0</span>
+                        <span class="stat-label">Registered</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle card-icon"></i>
+                        <span class="stat-number" id="verifiedCount">0</span>
+                        <span class="stat-label">Verified</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-alt card-icon"></i>
+                        <span class="stat-number">DEC 15</span>
+                        <span class="stat-label">Start Date</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <i class="fas fa-map-marker-alt card-icon"></i>
+                        <span class="stat-number">ARUA</span>
+                        <span class="stat-label">Location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tournament Groups Section -->
+    <section id="groups" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Tournament Groups</h2>
+            <div class="row g-4" id="groupsContainer">
+                <!-- Groups will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixtures Section -->
+    <section id="fixtures" class="py-5 bg-dark-overlay">
+        <div class="container">
+            <h2 class="section-title">Fixtures</h2>
+            <div id="fixturesContainer">
+                <!-- Fixtures will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Standings Section -->
+    <section id="standings" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Group Standings</h2>
+            <div id="standingsContainer">
+                <!-- Standings will be loaded here -->
+            </div>
+        </div>
+    </section>
+   
+    <!-- NEW: KNOCKOUT BRACKET SECTION -->
+    <section id="knockout" class="knockout-bracket-section py-5">
+       <div class="container">
+           <h2 class="knockout-bracket-title">
+               <i class="fas fa-trophy"></i> KNOCKOUT STAGE <i class="fas fa-trophy"></i>
+            </h2>
+        
+          <div id="knockoutBracketContainer">
+               <p class="text-center text-info">
+                  <i class="fas fa-info-circle"></i> Knockout bracket will appear here after group stage completion
+               </p>
+           </div>
+       </div>
+   </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row g-4">
+              <!-- Card 1 -->
+               <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="hover-card text-center" style="background-image: url('e:/wnx-league/img/rush.jpg');">
+                       <div class="card-overlay">
+                          <img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 50px; width: auto; margin-top: 30px;"></i>
+                          <h4 class="card-title">League</h4>
+                           <p class="card-text">Join competitive WNX-FC26 tournaments and win amazing prizes</p>
+                            <button class="btn card-button" data-bs-toggle="modal" data-bs-target="#tournamentInfoModal">
+                              <i class="fas fa-arrow-right"></i> View More
+                            </button>
+                        </div>
+                   </div>
+                </div>
+                <!-- Card 2 -->
+                 <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="hover-card text-center" style="background-image: url('e:/wnx-league/img/26.webp');">
+                      <div class="card-overlay">
+                          <img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 50px; width: auto; margin-top: 20px;"></i>
+                          <h4 class="card-title" style="border: 50px;">Tournament</h4>
+                          <p class="card-text-muted"></p>
+                         
+                        </div>
+                   </div>
+                </div>
+               
+                <!-- Card 3 -->
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                   <div class="hover-card text-center" style="background-image: url('e:/wnx-league/img/fc.jpg');">
+                      <div class="card-overlay">
+                         <img src="e:/wnx-league/img/fifa.png" alt="WNX" style="height: 50px; width: auto; margin-top: 30px;"></i>
+                         <h4 class="card-title">Tournament</h4>
+                         <p class="card-text">Join competitive FC26 tournaments and win amazing prizes</p>
+                           <button class="btn card-button" data-bs-toggle="modal" data-bs-target="#tournamentJourneyModal">
+                              <i class="fas fa-arrow-right"></i> View More
+                           </button>
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+            <h2 class="section-title">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-section">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+256 762 685 612</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>henryaluonzi2@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Arua City, Uganda</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4><img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 50px; width: auto; margin-right: 8px;"></h4>
+                    <p class="text-white">West Nile Xtreme - Students Gamers League</p>
+                    <p class="text-white small">Powered by FC26</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about us.html" class="text-decoration-none text-white">About us</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.facebook.com/share/g/1SPPu24H6n/" class="text-decoration-none"><i class="fab fa-facebook fa-2x" style="color: var(--fc-teal);"></i></a>
+                        <a href="#" class="text-decoration-none"><i class="fab fa-x-twitter fa-2x" style="color: var(--fc-teal);"></i></a>
+                        <a href="#" class="text-decoration-none"><i class="fab fa-instagram fa-2x" style="color: var(--fc-teal);"></i></a>
+                        <a href="https://www.tiktok.com/@westnilextreme?is_from_webapp=1&sender_device=pc" class="text-decoration-none"><i class="fab fa-tiktok fa-2x" style="color: var(--fc-teal);"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: var(--fc-teal);">
+            <div class="text-center text-white">
+                <p>&copy; 2025 West Nile Xtreme. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-plus"></i> Register for Tournament</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="regName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Display Name / Gamer Tag</label>
+                                <input type="text" class="form-control" id="regDisplayName" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="regEmail" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="regPhone" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">University</label>
+                                <select class="form-select" id="regUniversity" required>
+                                    <option value="">Select University</option>
+                                    <option value="Makerere University Kampala">Makerere University Kampala</option>
+                                    <option value="Uganda Christian University">Uganda Christian University</option>
+                                    <option value="Kyambogo University">Kyambogo University</option>
+                                    <option value="Kampala International University">Kampala International University</option>
+                                    <option value="Makerere Business University">Makerere Business University</option>
+                                    <option value="International University of East Africa">International University of East Africa</option>
+                                    <option value="Kabale University">Kabale University</option>
+                                    <option value="Muni University">Muni University</option>
+                                    <option value="Bugema University">Bugema University</option>
+                                    <option value="Nakawa Technical School">Nakawa Technical School</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">FIFA Club</label>
+                                <select class="form-select" id="regFifaClub" required>
+                                    <option value="">Select FIFA Club</option>
+                                    <option value="Real Madrid">Real Madrid</option>
+                                    <option value="Barcelona">Barcelona</option>
+                                    <option value="Bayern Munich">Bayern Munich</option>
+                                    <option value="Manchester City">Manchester City</option>
+                                    <option value="Liverpool">Liverpool</option>
+                                    <option value="PSG">PSG</option>
+                                    <option value="Chelsea">Chelsea</option>
+                                    <option value="Manchester United">Manchester United</option>
+                                    <option value="Arsenal">Arsenal</option>
+                                    <option value="Tottenham">Tottenham</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="alert" style="background: rgba(251, 191, 36, 0.2); border: 1px solid var(--fc-gold);">
+                            <h6 style="color: var(--fc-gold);"><i class="fas fa-money-bill-wave"></i> Payment Instructions:</h6>
+                            <p class="mb-1" style="color: white;">After registration, send <strong>5,000 UGX</strong> to:</p>
+                            <p class="mb-1" style="color: white;"><strong>MTN Mobile Money: 0762685612</strong></p>
+                            <p class="mb-0" style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Use your payment reference code</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100">
+                            <i class="fas fa-check-circle"></i> Register - 5K UGX
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal fade" id="adminLoginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-shield"></i> Admin Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adminLoginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="adminEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100">
+                            <i class="fas fa-sign-in-alt"></i> Login as Admin
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-shield"></i> Admin Dashboard</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                    <!-- Admin Tabs -->
+                    <ul class="nav nav-tabs mb-4" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#adminPayments">
+                                <i class="fas fa-money-bill"></i> Payments
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#adminGroups">
+                                <i class="fas fa-layer-group"></i> Groups
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#adminFixtures">
+                                <i class="fas fa-calendar"></i> Fixtures
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#adminScores">
+                                <i class="fas fa-futbol"></i> Scores
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#knockoutTab">
+                               <i class="fas fa-trophy"></i> Knockout
+                           </button>
+                       </li>
+
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- Payments Tab -->
+                        <div class="tab-pane fade show active" id="adminPayments">
+                            <div class="admin-panel">
+                                <h5 class="mb-3" style="color: var(--fc-gold);">
+                                    <i class="fas fa-clock"></i> Pending Payments <span class="badge badge-pending" id="adminPendingCount">0</span>
+                                </h5>
+                                <div id="adminPendingContainer"></div>
+                            </div>
+                            <div class="admin-panel mt-4">
+                                <h5 class="mb-3" style="color: #10b981;">
+                                    <i class="fas fa-check-circle"></i> Verified Players <span class="badge badge-verified" id="adminVerifiedCount">0</span>
+                                </h5>
+                                <div id="adminVerifiedContainer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Groups Tab -->
+                        <div class="tab-pane fade" id="adminGroups">
+                            <div class="admin-panel">
+                                <button class="btn btn-primary-custom mb-3" onclick="adminGenerateGroups()">
+                                    <i class="fas fa-shuffle"></i> Generate Groups (Requires 16+ verified)
+                                </button>
+                                <div id="adminGroupsContainer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Fixtures Tab -->
+                        <div class="tab-pane fade" id="adminFixtures">
+                            <div class="admin-panel">
+                                <button class="btn btn-primary-custom mb-3" onclick="adminGenerateFixtures()">
+                                    <i class="fas fa-plus"></i> Generate Group Fixtures
+                                </button>
+                                <div id="adminFixturesContainer"></div>
+                            </div>
+                        </div>
+
+                        <!-- Scores Tab -->
+                        <div class="tab-pane fade" id="adminScores">
+                            <div class="admin-panel">
+                                <h5 class="mb-3">Update Match Scores</h5>
+                                <div id="adminScoresContainer"></div>
+                            </div>
+                        </div>
+
+                       <div>
+                         <!-- NEW KNOCKOUT TAB CONTENT -->
+                          <div class="tab-pane fade" id="knockoutTab">
+                             <div class="knockout-admin-section">
+                                 <h4 class="mb-4 text-center" style="color: var(--fc-teal);">
+                                     <i class="fas fa-trophy"></i> Knockout Stage Management
+                                  </h4>
+                               </div>
+                           </div>
+        
+                      
+                         <!-- Generate Knockout Button -->
+                         <div class="text-center mb-4">
+                             <button class="btn btn-primary btn-lg" onclick="generateKnockout()" id="generateKnockoutBtn">
+                                 <i class="fas fa-sitemap"></i> Generate Knockout Bracket
+                              </button>
+                              <p class="text-info mt-2 small">
+                                 <i class="fas fa-info-circle"></i> Requires all group stage matches to be completed
+                               </p>
+                          </div>
+        
+                          <!-- Knockout Bracket Container -->
+                          <div id="knockoutAdminContainer">
+                             <p class="text-info text-center">Click "Generate Knockout Bracket" to create quarter-finals, semi-finals, and final matches.</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tournament Info Modal -->
+    <div class="modal fade" id="tournamentInfoModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 30px; width: auto; margin-top: 5px;"></i> WNX Tournament Information
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                
+                    <!-- Tournament Header -->
+                    <div class="tournament-info-header text-center mb-4">
+                        <h3 style="color: var(--fc-teal); font-weight: 700;">
+                            EA Sports FC26 Tournament
+                        </h3>
+                        <p class="text-info">Inter-University Gaming Championship</p>
+                    </div>
+
+                    <!-- Tournament Dates -->
+                    <div class="info-section mb-4">
+                        <h5 style="color: var(--fc-teal);">
+                            <i class="fas fa-calendar-alt"></i> Tournament Schedule
+                        </h5>
+                        <div class="info-card">
+                         <p><strong>Start Date:</strong> December 15, 2025</p>
+                         <p><strong>End Date:</strong>.....</p>
+                         <p><strong>Registration Deadline:</strong> December 14, 2025</p>
+                         <p class="mb-0"><strong>Duration:</strong> 1 full week of competitive gaming</p>
+                       </div>
+                   </div>
+
+                    <!-- Tournament Format -->
+                  <div class="info-section mb-4">
+                      <h5 style="color: var(--fc-teal);">
+                         <i class="fas fa-sitemap"></i> Tournament Format
+                      </h5>
+                      <div class="info-card">
+                         <p><strong>Total Players:</strong> 20 Participants</p>
+                         <p><strong>Group Stage:</strong></p>
+                           <ul>
+                             <li>4 Groups (A, B, C, D)</li>
+                             <li>5 Players per group</li>
+                             <li>Round-robin format (everyone plays everyone in their group)</li>
+                             <li>Top 2 from each group qualify for knockout stage</li>
+                           </ul>
+                           <p><strong>Knockout Stage:</strong></p>
+                           <ul>
+                             <li>Quarter-Finals (8 players)</li>
+                             <li>Semi-Finals (4 players)</li>
+                             <li>Third Place Match</li>
+                             <li>Grand Final</li>
+                           </ul>
+                       </div>
+                   </div>
+
+                    <!-- Registration & Fees -->
+                    <div class="info-section mb-4">
+                        <h5 style="color: var(--fc-teal);">
+                           <i class="fas fa-money-bill-wave"></i> Registration & Fees
+                        </h5>
+                       <div class="info-card">
+                         <p><strong>Registration Fee:</strong> 5,000 UGX</p>
+                         <p><strong>Payment Method:</strong> MTN Mobile Money</p>
+                         <p><strong>Payment Number:</strong> 0762685612</p>
+                           <p class="mb-0">
+                              <small class="text-info">
+                                 <i class="fas fa-info-circle"></i> After payment, use your payment code as reference
+                               </small>
+                           </p>
+                       </div>
+                   </div>
+
+                    <!-- Prize Pool -->
+                    <div class="info-section mb-4">
+                       <h5 style="color: var(--fc-teal);">
+                         <i class="fas fa-gift"></i> Prize Pool
+                       </h5>
+                       <div class="info-card">
+                           <div class="prize-item">
+                             <span class="prize-medal">🥇</span>
+                             <strong>1st Place:</strong> Gold
+                           </div>
+                           <div class="prize-item">
+                             <span class="prize-medal">🥈</span>
+                             <strong>2nd Place:</strong> Silver
+                           </div>
+                           <div class="prize-item">
+                             <span class="prize-medal">🥉</span>
+                             <strong>3rd Place:</strong> Bronze
+                           </div>
+                       </div>
+                   </div>
+
+                    <!-- Participating Universities -->
+                    <div class="info-section mb-4">
+                       <h5 style="color: var(--fc-teal);">
+                         <i class="fas fa-university"></i> Participating Universities
+                       </h5>
+                       <div class="info-card">
+                          <div class="universities-grid">
+                             <div class="university-item">✅ Makerere University</div>
+                             <div class="university-item">✅ Kyambogo University</div>
+                             <div class="university-item">✅ MUBS</div>
+                             <div class="university-item">✅ UCU</div>
+                             <div class="university-item">✅ Gulu University</div>
+                             <div class="university-item">✅ Busitema University</div>
+                             <div class="university-item">✅ Kabale University</div>
+                             <div class="university-item">✅ IUIU</div>
+                             <div class="university-item">✅ KIU</div>
+                             <div class="university-item">✅ Muni University</div>
+                             <div class="university-item">✅ Bugema University</div>
+                             <div class="university-item">✅ IUEA</div>
+                             <div class="university-item">✅ Nkumba University</div>
+                             <div class="university-item">✅ ISBAT University</div>
+                             <div class="university-item">✅ AGAKAN FOUNDATION</div>
+                             <div class="university-item">✅ Nakawa Technical school</div>
+                           </div>
+                       </div>
+                   </div>
+
+                    <!-- Rules & Guidelines -->
+                    <div class="info-section mb-4">
+                       <h5 style="color: var(--fc-teal);">
+                         <i class="fas fa-gavel"></i> Rules & Guidelines
+                       </h5>
+                       <div class="info-card">
+                           <ul>
+                             <li><strong>Game Settings:</strong> Default EA Sports FC26 settings</li>
+                             <li><strong>Match Duration:</strong> Standard match length (5 minutes per half)</li>
+                             <li><strong>Difficulty:</strong> Legendary level</li>
+                             <li><strong>Team Selection:</strong> Any official team in the game</li>
+                             <li><strong>Fair Play:</strong> No glitching, exploits, or unsportsmanlike conduct</li>
+                             <li><strong>Match Scheduling:</strong> Coordinated by tournament admin</li>
+                             <li><strong>Disputes:</strong> Resolved by tournament committee</li>
+                             <li><strong>No-shows:</strong> 15-minute grace period, then forfeit</li>
+                           </ul>
+                        </div>
+                   </div>
+
+                    <!-- Contact Information -->
+                    <div class="info-section mb-4">
+                       <h5 style="color: var(--fc-teal);">
+                         <i class="fas fa-phone-alt"></i> Contact & Support
+                       </h5>
+                       <div class="info-card">
+                         <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@wnxtournament.com</p>
+                         <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +256 762 685612</p>
+                         <p class="mb-0"><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Kampala, Uganda</p>
+                       </div>
+                   </div>
+
+                    <!-- Call to Action -->
+                    <div class="text-center mt-4">
+                      <button class="btn btn-journey" onclick="openRegistrationForm()">
+                          <i class="fas fa-arrow-right"></i> Register Now
+                       </button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tournament Journey Modal -->
+<div class="modal fade" id="tournamentJourneyModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-route"></i> Your Tournament Journey
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Journey Header -->
+                <div class="journey-header text-center mb-5">
+                    <h3 style="color: var(--fc-teal); font-weight: 700;">
+                        From Registration to Champion 
+                    </h3>
+                    <p class="text-cyan">Follow the path to glory in the WNX Tournament</p>
+                </div>
+
+                <!-- Journey Timeline -->
+                <div class="journey-timeline">
+                    
+                    <!-- Step 1: Registration -->
+                    <div class="journey-step">
+                        <div class="journey-step-number">1</div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h4>Registration</h4>
+                            <p>Fill out the registration form with your details</p>
+                            <ul>
+                                <li>Enter your name, email, and phone number</li>
+                                <li>Select your university</li>
+                                <li>Choose your FIFA club</li>
+                                <li>Receive unique payment code</li>
+                            </ul>
+                            <div class="journey-action">
+                                <button class="btn btn-journey" onclick="openRegistrationForm()">
+                                  <i class="fas fa-arrow-right"></i> Register Now
+                               </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="journey-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <!-- Step 2: Payment -->
+                    <div class="journey-step">
+                        <div class="journey-step-number">2</div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h4>Payment</h4>
+                            <p>Pay your registration fee via MTN Mobile Money</p>
+                            <ul>
+                                <li>Fee: 5,000 UGX</li>
+                                <li>Send to: 0762685612</li>
+                                <li>Use your payment code as reference</li>
+                                <li>Confirmation within 24 hours</li>
+                            </ul>
+                            <div class="payment-info-box">
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Important:</strong> Include your payment code in the transaction reference
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="journey-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <!-- Step 3: Verification -->
+                    <div class="journey-step">
+                        <div class="journey-step-number">3</div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h4>Verification</h4>
+                            <p>Admin verifies your payment and activates your account</p>
+                            <ul>
+                                <li>Admin checks payment receipt</li>
+                                <li>Your status changes from "Pending" to "Verified"</li>
+                                <li>You're now an official tournament participant!</li>
+                                <li>Wait for group assignment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="journey-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <!-- Step 4: Group Stage -->
+                    <div class="journey-step">
+                        <div class="journey-step-number">4</div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Group Stage</h4>
+                            <p>Compete in round-robin matches within your group</p>
+                            <ul>
+                                <li>Assigned to Group A, B, C, or D</li>
+                                <li>5 players per group</li>
+                                <li>Play against every player in your group</li>
+                                <li>Top 2 advance to knockout stage</li>
+                            </ul>
+                            <div class="stats-box">
+                                <div class="stat-item">
+                                    <strong>4</strong>
+                                    <span>Groups</span>
+                                </div>
+                                <div class="stat-item">
+                                    <strong>5</strong>
+                                    <span>Players/Group</span>
+                                </div>
+                                <div class="stat-item">
+                                    <strong>8</strong>
+                                    <span>Qualify</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="journey-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <!-- Step 5: Knockout Stage -->
+                    <div class="journey-step">
+                        <div class="journey-step-number">5</div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h4>Knockout Stage</h4>
+                            <p>Single elimination - win or go home!</p>
+                            <ul>
+                                <li><strong>Quarter-Finals:</strong> 8 players compete</li>
+                                <li><strong>Semi-Finals:</strong> 4 players remain</li>
+                                <li><strong>Third Place:</strong> Battle for bronze</li>
+                                <li><strong>Final:</strong> Fight for the championship!</li>
+                            </ul>
+                            <div class="knockout-visual">
+                                <div class="knockout-round">QF → SF → Final</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="journey-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <!-- Step 6: Champion! -->
+                    <div class="journey-step champion-step">
+                        <div class="journey-step-number champion-number"><img src="e:/wnx-league/img/wnx-logo.png" alt="WNX" style="height: 28px; width: auto; margin-right: 8px;"></div>
+                        <div class="journey-step-content">
+                            <div class="journey-step-icon champion-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4>Become Champion!</h4>
+                            <p>Win the tournament and claim your prizes</p>
+                            <div class="champion-prizes">
+                                <div class="prize-box gold">
+                                    <div class="prize-medal">🥇</div>
+                                    <strong>Champion</strong>
+                                    <span>...</span>
+                                    <small>+ Trophy + Certificate</small>
+                                </div>
+                                <div class="prize-box silver">
+                                    <div class="prize-medal">🥈</div>
+                                    <strong>Runner-Up</strong>
+                                    <span>...</span>
+                                    <small>+ Certificate</small>
+                                </div>
+                                <div class="prize-box bronze">
+                                    <div class="prize-medal">🥉</div>
+                                    <strong>Third Place</strong>
+                                    <span>...</span>
+                                    <small>+ Certificate</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Call to Action Footer -->
+                <div class="journey-footer text-center mt-5">
+                    <h4 style="color: var(--fc-teal); margin-bottom: 20px;">
+                        Ready to Start Your Journey?
+                    </h4>
+                    <button class="btn btn-primary btn-lg" onclick="openRegistrationForm()">
+                      <i class="fas fa-rocket"></i> Register Now & Begin!
+                   </button>
+                    <p class="text-info mt-3">
+                        <i class="fas fa-clock"></i> Registration closes December 5, 2025
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+                    
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal" style="display: none;">
+      <div class="chat-modal-overlay" onclick="closeChatModal()"></div>
+       <div class="chat-modal-content">
+          <!-- Chat Header -->
+          <div class="chat-modal-header">
+              <div>
+                 <h5><i class="fas fa-comments"></i> Tournament Chat</h5>
+                 <span class="online-count-small">🟢 <span id="onlineCountModal">0</span> Online</span>
+               </div>
+               <button class="close-chat-btn" onclick="closeChatModal()">
+                 <i class="fas fa-times"></i>
+              </button>
+           </div>
+        
+           <!-- Typing Indicator -->
+           <div class="typing-indicator-bar" id="typingIndicatorModal"></div>
+        
+           <!-- Messages Area -->
+           <div class="chat-messages-modal" id="chatMessagesModal">
+             <p class="text-info text-center">No messages yet. Start the conversation!</p>
+           </div>
+        
+           <!-- Input Area -->
+           <div class="chat-input-container-modal">
+             <input 
+                 type="text" 
+                 id="chatInputModal" 
+                 placeholder="Type your message..." 
+                 maxlength="500"
+                 onkeypress="handleChatKeyPress(event)"
+                >
+              <button class="emoji-btn-modal" onclick="toggleEmojiPickerModal()">😊</button>
+              <button class="send-btn-modal" onclick="sendChatMessage()">
+                 <i class="fas fa-paper-plane"></i>
+               </button>
+           </div>
+        
+           <!-- Emoji Picker -->
+           <div class="emoji-picker-modal" id="emojiPickerModal" style="display: none;">
+             <button onclick="insertEmojiModal('😊')">😊</button>
+             <button onclick="insertEmojiModal('😂')">😂</button>
+             <button onclick="insertEmojiModal('❤️')">❤️</button>
+             <button onclick="insertEmojiModal('🔥')">🔥</button>
+             <button onclick="insertEmojiModal('⚽')">⚽</button>
+             <button onclick="insertEmojiModal('🎮')">🎮</button>
+             <button onclick="insertEmojiModal('🏆')">🏆</button>
+             <button onclick="insertEmojiModal('💪')">💪</button>
+             <button onclick="insertEmojiModal('👍')">👍</button>
+             <button onclick="insertEmojiModal('👏')">👏</button>
+             <button onclick="insertEmojiModal('😎')">😎</button>
+             <button onclick="insertEmojiModal('🎯')">🎯</button>
+           </div>
+       </div>
+   </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
+</html></label>
+                                <input type="text" class="form-control" id="regName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+>>>>>>> 9f1ba0ffb20b4f962d4ce901fe69b535dee39d1b
                                 <label class

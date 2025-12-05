@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wnx-league - About us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --fc-teal: #00ffcc;
+            --fc-cyan: #22d3ee;
+            --fc-dark: #0a1e3b;
+            --fc-blue: #1e3a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--fc-dark) 0%, var(--fc-blue) 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        #about {
+            background: transparent;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--fc-teal);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        .about-card {
+            background: rgba(10, 30, 59, 0.8);
+            border: 2px solid var(--fc-teal);
+            border-radius: 30px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 255, 204, 0.3);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .about-icon-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .about-main-icon {
+            font-size: 5rem;
+            background: linear-gradient(135deg, var(--fc-teal), var(--fc-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .title-img {
+            display: block;
+            width: 250px;
+            height: auto;
+            margin: 20px auto;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.5));
+        }
+
+        .about-heading {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--fc-teal);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-tagline {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--fc-cyan);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .lead-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+        }
+
+        .mission-statement {
+            background: rgba(0, 255, 204, 0.1);
+            border-left: 4px solid var(--fc-teal);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .mission-statement:hover {
+            background: rgba(0, 255, 204, 0.15);
+            transform: translateX(10px);
+        }
+
+        .mission-statement h4 {
+            color: var(--fc-teal);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-statement p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            margin: 0;
+        }
+
+        .mission-statement strong {
+            color: var(--fc-teal);
+            font-weight: 700;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.333%;
+            max-width: 33.333%;
+            padding: 0 15px;
+        }
+
+        .g-4 {
+            margin-top: 30px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .value-card:hover {
+            background: rgba(0, 255, 204, 0.1);
+            border-color: var(--fc-teal);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--fc-teal);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .value-card h5 {
+            color: var(--fc-cyan);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .vision-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(0, 255, 204, 0.1));
+            border: 2px solid var(--fc-cyan);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .vision-box:hover {
+            border-color: var(--fc-teal);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.3);
+        }
+
+        .vision-box h4 {
+            color: var(--fc-cyan);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vision-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            margin: 0;
+        }
+
+        .stats-highlight {
+            background: rgba(5, 13, 26, 0.6);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 40px 0;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .col-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+
+        .col-md-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+            padding: 0 15px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .highlight-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--fc-teal), var(--fc-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .highlight-label {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.15), rgba(34, 211, 238, 0.15));
+            border: 2px solid var(--fc-teal);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .cta-box strong {
+            color: var(--fc-teal);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--fc-teal), var(--fc-cyan));
+            color: var(--fc-dark);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.4);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 204, 0.6);
+        }
+
+        .cards-section {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: rgba(10, 30, 59, 0.8);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 5px 20px rgba(0, 255, 204, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 calc(33.333% - 14px);
+            min-width: 300px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--fc-teal), var(--fc-cyan));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--fc-teal);
+            box-shadow: 0 12px 40px rgba(0, 255, 204, 0.4);
+        }
+
+        .video-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 204, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .card:hover .play-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+            background: var(--fc-teal);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--fc-dark);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .about-card {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-heading {
+                font-size: 2rem;
+            }
+
+            .about-tagline {
+                font-size: 1.1rem;
+            }
+
+            .lead-text {
+                font-size: 1.1rem;
+            }
+
+            .title-img {
+                width: 180px;
+            }
+
+            .col-md-4,
+            .col-md-3 {
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .col-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .mission-statement,
+            .vision-box {
+                padding: 20px;
+            }
+
+            .mission-statement h4,
+            .vision-box h4 {
+                font-size: 1.2rem;
+            }
+
+            .mission-statement p,
+            .vision-box p {
+                font-size: 1rem;
+            }
+
+            .highlight-number {
+                font-size: 2rem;
+            }
+
+            .cta-box {
+                padding: 25px;
+            }
+
+            .cta-box p {
+                font-size: 1rem;
+            }
+
+            .cards-section {
+                flex-direction: column;
+            }
+
+            .card {
+                min-width: 100%;
+            }
+        }
+        .back-arrow {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--fc-teal), var(--fc-cyan));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--fc-dark);
+        font-size: 1.5rem;
+        box-shadow: 0 5px 20px rgba(0, 255, 204, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+       }
+
+       .back-arrow:hover {
+       transform: translateX(-5px) scale(1.1);
+       box-shadow: 0 8px 30px rgba(0, 255, 204, 0.6);
+      }
+      html, body {
+    overscroll-behavior: none;
+    position: fixed;
+    width: 100%;
+}
+
+#about {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--fc-dark) 0%, var(--fc-blue) 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+    background-attachment: fixed; /* Add this - keeps background fixed */
+}
+
+html {
+    background: linear-gradient(135deg, var(--fc-dark) 0%, var(--fc-blue) 100%); /* Add this */
+    background-attachment: fixed; /* Add this */
+}
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-arrow">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">About WNX</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="about-card">
+                        <div class="about-icon-wrapper">
+                            <i class="fas fa-gamepad about-main-icon"></i>
+                        </div>
+                        <img src="e:/wnx-league/img/wnx-logo.png" alt="Logo" class="title-img">
+                        <h3 class="about-heading">West Nile Xtreme</h3>
+                        <p class="about-tagline">Where Gaming Meets Community</p>
+                        
+                        <div class="about-content">
+                            <p class="lead-text">
+                                WNX is more than just a tournament—it's a movement to bring together 
+                                the gaming community across West Nile and beyond.
+                            </p>
+                            
+                            <div class="mission-statement">
+                                <h4><i class="fas fa-bullseye"></i> Our Mission</h4>
+                                <p>
+                                    Using technology to <strong>forge strong ties</strong> between gamers, 
+                                    universities, and communities. We believe that gaming is a powerful 
+                                    tool for <strong>strengthening connections and bonds</strong> that 
+                                    transcend physical boundaries.
+                                </p>
+                            </div>
+
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="value-card">
+                                        <i class="fas fa-users-line value-icon"></i>
+                                        <h5>Connection</h5>
+                                        <p>Bringing gamers together through competitive play and shared passion</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="value-card">
+                                        <i class="fas fa-laptop-code value-icon"></i>
+                                        <h5>Technology</h5>
+                                        <p>Leveraging digital platforms to create seamless tournament experiences</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="value-card">
+                                        <i class="fas fa-heart value-icon"></i>
+                                        <h5>Community</h5>
+                                        <p>Building lasting relationships that extend beyond the game</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="vision-box">
+                                <h4><i class="fas fa-eye"></i> Our Vision</h4>
+                                <p>
+                                    To create the largest and most connected gaming community in Uganda, 
+                                    where every match is an opportunity to build friendships, showcase 
+                                    talent, celebrate our shared love and passion for the Game(FC26) and perhaps have fun.
+                                </p>
+                            </div>
+
+                            <div class="stats-highlight">
+                                <div class="row text-center">
+                                    <div class="col-6 col-md-3">
+                                        <div class="highlight-number">10+</div>
+                                        <div class="highlight-label">Universities</div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="highlight-number">20</div>
+                                        <div class="highlight-label">Players</div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="highlight-number">1</div>
+                                        <div class="highlight-label">Champion</div>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <div class="highlight-number">∞</div>
+                                        <div class="highlight-label">Connections</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cta-box">
+                                <p class="mb-3">
+                                    <strong>Join us in making history.</strong> Whether you're a seasoned 
+                                    pro or just starting your gaming journey, WNX is your platform to 
+                                    compete, connect, and grow.
+                                </p>
+                                <button class="btn btn-primary-custom" onclick="alert('Registration opens soon!')">
+                                    <i class="fas fa-rocket"></i> infinity links∞
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-section">
+                <div class="card">
+                    <div class="video-container">
+                        <video loop muted>
+                            <source src="videos/fc 26-gameplay.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-overlay" onclick="this.previousElementSibling.paused ? this.previousElementSibling.play() : this.previousElementSibling.pause()">
+                            <div class="play-icon"></div>
+                        </div>
+                        <div style="position: absolute; bottom: 15px; left: 15px; color: white; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 5px; font-size: 0.9rem; font-weight: 600;">
+                            FC 26 Gameplay
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <video loop muted>
+                            <source src="videos/fc 26-reveal.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-overlay" onclick="this.previousElementSibling.paused ? this.previousElementSibling.play() : this.previousElementSibling.pause()">
+                            <div class="play-icon"></div>
+                        </div>
+                        <div style="position: absolute; bottom: 15px; left: 15px; color: white; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 5px; font-size: 0.9rem; font-weight: 600;">
+                            FC 26 Official Reveal
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <video loop info>
+                            <source src="videos/fc 26-launch.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-overlay" onclick="this.previousElementSibling.paused ? this.previousElementSibling.play() : this.previousElementSibling.pause()">
+                            <div class="play-icon"></div>
+                        </div>
+                        <div style="position: absolute; bottom: 15px; left: 15px; color: white; background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 5px; font-size: 0.9rem; font-weight: 600;">
+                            FC 26 Launch Trailer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -43,7 +43,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('c:/tickets/new folder/img/ea.jpg') no-repeat center center fixed;
+    background: url('img/ea.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
     min-height: 100vh;
